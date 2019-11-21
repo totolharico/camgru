@@ -1,0 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif; 
+}
+
+html, body {
+	height: 100%;
+}
+
+#header {
+	display: flex;
+	background-color: #1C25EE;
+	width: 100%;
+	height: 65px;
+	align-items: center;
+	justify-content: center;
+}
+h1 {
+	color: white;
+}

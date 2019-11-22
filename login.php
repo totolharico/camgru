@@ -1,4 +1,5 @@
 <?php
+//require('Db.class.php');
 
 $error = [];
 
@@ -18,6 +19,10 @@ if (count($error) === 0) {
 		$error['passwd'] = 'password must contain at least 6 char';
 	else if ($_POST['passwd2'] !== $_POST['passwd'])
 		$error['passwd2'] = 'you must use the same password';
+	// else {
+	// 	$db = new Db();
+	// 	$error['login'] = $db->checkUser($_POST['login']);
+	// }
 }
 echo json_encode($error);
 

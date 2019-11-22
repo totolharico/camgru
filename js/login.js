@@ -12,11 +12,14 @@ window.onload = function() {
 		response.json().then(function(data){
 			console.log(data)
 			var key = Object.keys(data)[0]
-			if (key !== undefined){
+			if (key !== 'no_error'){
 				var input = document.querySelector('#register_' + key)
 				input.classList.add("form_error");
 				var msg_error = document.querySelector('#error_' + key)
 				msg_error.innerText = data[key]
+			} else {
+				var valid_msg = document.querySelector('#register_valid')
+				valid_msg.innerText = data[keu]
 			}
 		})
 	}

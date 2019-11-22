@@ -17,12 +17,12 @@ class Db {
 
 	public function checkUser($login) {
 		if ($this->_db->exect('SELECT login FROM user WHERE login LIKE $login') === 1)
-			return('Login already used');
-		return('');
-
+			return(true);
+		return(false);
 	}
-	// public function insertUser() {
-	// 	$
-	// }
+	
+	public function insertUser($login, $email, $passwd) {
+		$this->_db->exect('INSERT INTO user (login, email, password) VALUES ($login, $email, $passwd)');
+	}
 
 }

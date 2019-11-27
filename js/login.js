@@ -19,7 +19,7 @@ window.onload = function() {
 				msg_error.innerText = data[key]
 			} else {
 				var valid_msg = document.querySelector('#register_valid')
-				valid_msg.innerText = data[keu]
+				valid_msg.innerText = data[key]
 			}
 		})
 	}

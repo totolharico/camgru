@@ -5,7 +5,7 @@ class Db {
 	private $_db;
 
 	function __construct() {
-		require('../config/database.php');
+		require('config/database.php');
 		
 		try {
 		    $this->_db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
@@ -16,13 +16,17 @@ class Db {
 	}
 
 	public function checkUser($login) {
-		if ($this->_db->exect('SELECT login FROM user WHERE login LIKE $login') === 1)
-			return(true);
-		return(false);
+		$sql = "SELECT login FROM user WHERE login LIKE '" . $login . "'";
+		$row = $this->_db->query($sql);
+		if ($row === $login)
+			return(false);
+		return(true);
 	}
 	
 	public function insertUser($login, $email, $passwd) {
-		$this->_db->exect('INSERT INTO user (login, email, password) VALUES ($login, $email, $passwd)');
+		$passwd = hash('whirlpool', $passwd);
+		$sql = "INSERT INTO `user` (`login`, `email`, `password`) VALUES ( '". $login . "','" . $email . "','" . $passwd . "')";
+		$this->_db->exec($sql);
 	}
 
 }

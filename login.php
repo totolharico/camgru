@@ -21,11 +21,12 @@ if (count($error) === 0) {
 		$error['passwd2'] = 'you must use the same password';
 	else {
 		$db = new Db();
+		
 		if ($db->checkUser($_POST['login']) === false)
 			$error['login'] = 'login already used';
 		else {
-		 	$db->insertUser($_POST['login'], $_POST['email'], $_POST['passwd']);
-		 	$error['no_error'] = 'your account was created, a confirmation link as been sent to your email';
+			$db->insertUser($_POST['login'], $_POST['email'], $_POST['passwd']);
+			$error['no_error'] = 'your account was created, a confirmation link as been sent to your email'; 	
 		}
 	}
 }

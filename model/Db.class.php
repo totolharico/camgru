@@ -16,14 +16,13 @@ class Db {
 	}
 
 	public function checkUser($login, $email) {
-		$sql = "SELECT login, email FROM user WHERE login LIKE '" . $login . "' AND email LIKE '" . $email . "'";
+		$sql = "SELECT login, email FROM user WHERE login LIKE '" . $login . "' OR email LIKE '" . $email . "'";
 		$sth = $this->_db->prepare($sql);
 		$sth->execute();
-		$result = [];
 		$result = $sth->fetch();
-		if (isset($result['login']))
+		if (isset($result['login']) && $result['login'] === $login)
 			return('login');
-		if (isset($result['email']))
+		if (isset($result['email']) && $result['email'] === $email)
 			return('email');
 		return (false);
 
@@ -33,6 +32,16 @@ class Db {
 		$passwd = hash('whirlpool', $passwd);
 		$sql = "INSERT INTO `user` (`login`, `email`, `password`) VALUES ( '". $login . "','" . $email . "','" . $passwd . "')";
 		$this->_db->exec($sql);
+	}
+
+	public function signInUser($login, $passwd) {
+		$sql = "SELECT login, password FROM user WHERE login LIKE '" . $login . "' AND password LIKE '" . $passwd . "'";
+		$sth = $this->_db->prepare($sql);
+		$sth->execute();
+		$result = $sth->fetch();
+		if (isset($result['login']) && $result['login'] === $login)
+			return(true);
+		return(false);
 	}
 
 }

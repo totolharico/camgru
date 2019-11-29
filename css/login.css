@@ -9,12 +9,14 @@
 	flex-direction: column;
 	margin-top: 20px;
 	padding: 10px;
+	max-width: 238px;
 }
 
 input {
 	padding: 3px;
 	margin: 5px 0;
 	font-size: 20px;
+
 }
 
 .form_error {

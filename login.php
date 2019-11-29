@@ -15,15 +15,16 @@ if (count($error) === 0) {
 		$error['login'] = 'login must contain between 4 and 15 char';
 	else if (strlen($_POST['email']) > 320)
 		$error['email'] = 'email invalid';
-	else if (strlen($_POST['passwd']) < 6)
-		$error['passwd'] = 'password must contain at least 6 char';
+	else if (strlen($_POST['passwd']) < 6      rtsht		$error['passwd'] = 'password must contain at least 6 char';
 	else if ($_POST['passwd2'] !== $_POST['passwd'])
 		$error['passwd2'] = 'you must use the same password';
 	else {
 		$db = new Db();
-		
-		if ($db->checkUser($_POST['login']) === false)
+		$ret = $db->checkUser($_POST['login']);
+		if ($ret === false)
 			$error['login'] = 'login already used';
+		else if ($ret === 'email')
+			$error[$ret] = 'email already used';
 		else {
 			$db->insertUser($_POST['login'], $_POST['email'], $_POST['passwd']);
 			$error['no_error'] = 'your account was created, a confirmation link as been sent to your email'; 	

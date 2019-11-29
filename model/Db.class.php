@@ -15,12 +15,18 @@ class Db {
 		}
 	}
 
-	public function checkUser($login) {
-		$sql = "SELECT login FROM user WHERE login LIKE '" . $login . "'";
-		$row = $this->_db->query($sql);
-		if ($row === $login)
-			return(false);
-		return(true);
+	public function checkUser($login, $email) {
+		$sql = "SELECT login, email FROM user WHERE login LIKE '" . $login . "' AND email LIKE '" . $email . "'";
+		$sth = $this->_db->prepare($sql);
+		$sth->execute();
+		$result = [];
+		$result = $sth->fetch();
+		if (isset($result['login']))
+			return('login');
+		if (isset($result['email']))
+			return('email');
+		return (false);
+
 	}
 	
 	public function insertUser($login, $email, $passwd) {

@@ -9,6 +9,11 @@
 </head>
 <body>
 	<div id='header'>
+		<?php if (isset($_SESSION['user_logged'])){
+				echo '<a id="logout">logout</a>';
+				echo '<a id="user">' . htmlspecialchars($_SESSION['user_logged']) . "</a>";
+				}
+			?>
 		<h1>CAMAGRU</h1>
 	</div>
 	<?php require($page) ?>

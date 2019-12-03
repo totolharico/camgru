@@ -1,6 +1,6 @@
 <?php
 require('model/Db.class.php');
-
+session_start();
 $error = [];
 
 $fields = ['login', 'passwd'];
@@ -12,9 +12,11 @@ foreach ($fields as $field) {
 }
 if (count($error) === 0) {
 	$db = new Db;
-	if ($db->signInUser(hash('whirlpool', $_POST['passwd'])) === false)
+	if ($db->signInUser($_POST['login'], hash('whirlpool', $_POST['passwd'])) === false)
 		$error['other'] = 'login or passeword invalid';
-	else
+	else {
+		$_SESSION['user_logged'] = $_POST['login'];
 		$error['no_error'] = '';
+	}
 }
 echo json_encode($error);

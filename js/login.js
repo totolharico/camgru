@@ -48,6 +48,8 @@ window.onload = function() {
 		})
 	}
 
+	var head = document.querySelector('#header')
+	head.style.justifyContent = 'center'
 
 	var formSu = document.querySelector('#sign_up')
 	formSu.addEventListener('submit', function(event) {

@@ -10,11 +10,22 @@
 <body>
 	<div id='header'>
 		<?php if (isset($_SESSION['user_logged'])){
-				echo '<a id="logout">logout</a>';
-				echo '<a id="user">' . htmlspecialchars($_SESSION['user_logged']) . "</a>";
+				echo "
+				<div class='menu'>
+					<p>" . htmlspecialchars($_SESSION['user_logged']) . "</p>
+					<div class='sousmenu'>
+						<div class='links'><a href='' id='logout'>modify account</a></div>
+						<div class='links'><a href='' id='logout'>modify account</a></div>
+						<div class='links'><a href='' id='logout'>modify account</a></div>
+					</div>
+				</div>";
 				}
 			?>
 		<h1>CAMAGRU</h1>
+		<?php if (isset($_SESSION['user_logged'])){
+				echo '<a href="http://localhost:8080/camagru/logout.php" id="logout">logout</a>';
+				}
+			?>
 	</div>
 	<?php require($page) ?>
 </body>

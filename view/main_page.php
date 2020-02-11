@@ -1,1 +1,0 @@
-<h2>hello <?php echo htmlspecialchars($_SESSION['user_logged'])?></h2>

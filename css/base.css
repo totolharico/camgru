@@ -21,18 +21,75 @@ html, body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c5294', endColorstr='#207ce5', GradientType=1 );
 	width: 100%;
 	height: 65px;
+	justify-content: space-between;
 	align-items: center;
 }
 
 #logout {
-	align-items: right;
+	text-decoration:none;
+	margin-right: 18px; 
 	color: white;
 }
 
 #user {
+	text-decoration:none;
+	margin-left: 18px; 
 	color: white;
 }
 
 h1 {
 	color: white;
+}
+
+p {
+	font-family: sans-serif;
+	font-size: 20px;
+	cursor: default;
+}
+
+a {
+	color: black;
+}
+
+.sousmenu {
+	color: black;
+	margin-top: 22px; 
+	position: absolute;
+	display: none;
+	align-self: center;
+	width: 120px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.menu {
+	color: white;
+	padding-top: 20px;
+	text-align: center;
+	box-shadow: red;
+	width: 120px;
+	position: relative;
+	margin-left: 7px;
+	height: 65px;
+}
+
+.menu:hover .sousmenu {
+	display: block;
+}
+
+.links {
+	color: black;
+	cursor: default;
+	display: flex;
+	align-items: center;
+	padding-left: 2px; 
+	height: 40px;
+	font-size: 16px;
+}
+
+.menu:hover {
+	background-color: rgba(12,70,148,1);
+}
+
+.links:hover {
+	background-color: #d9d9d9;
 }
